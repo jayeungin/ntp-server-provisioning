@@ -22,6 +22,6 @@ provider "aws" {
 // Specify desired ami and instance_type
 resource "aws_instance" "ntp_server" {
   // CentOS 7 image for us-east-2 from https://wiki.centos.org/Cloud/AWS#head-78d1e3a4e6ba5c5a3847750d88266916ffe69648
-  ami           = "ami-06cf02a98a61f9f5e"
+  ami           = "ami-0a75b786d9a7f8144"
   instance_type = "t2.micro"
 }
