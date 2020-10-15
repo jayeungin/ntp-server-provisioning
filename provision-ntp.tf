@@ -27,26 +27,6 @@ resource "aws_instance" "master_ntp_server" {
   key_name = "ntp-server"
 
   # Pass in scripts to be executed in the first boot of the instance
-  user_data = "${file("Saltstack/install_salt.sh")}"
-
-  tags = {
-  Saltstack = "master"
-  }
-}
-
-resource "aws_instance" "minion_ntp_server" {
-
-  # CentOS 7 image needs to match region, see https://wiki.centos.org/Cloud/AWS
-  ami = "ami-0a75b786d9a7f8144"
-  instance_type = "t2.micro"
-
-  # Use AWS EC2 Key Pairs to create key pair, if you don't do this you won't be able to ssh/putty into your EC2
-  key_name = "ntp-server"
-
-  # Pass in scripts to be executed in the first boot of the instance
-  user_data = "${file("Saltstack/install_salt.sh")}"
-
-  tags = {
-  Saltstack = "minion"
-  }
+  # Installs salt on EC2
+  user_data = file("startup_tasks.sh")
 }
