@@ -1,0 +1,14 @@
+1. Use terraform to create a *.micro instance of CentOS 7. (Make sure you stay in free tier so you aren't charged)
+2. Use terraform to install salt onto the instance
+
+* Note all tasks to be done on Centos 7
+* Note the rest of the steps are using saltstack
+3. Create an ntp state in saltstack which installs the ntp package on the linux instance
+4. Add the ntp service to your ntp salt state and make sure it is running and enabled.
+5. Create a salt state which runs ntpdate 0.centos.pool.ntp.org to force a time sync
+6. Put your ntp Saltstack into a formula
+7. Add an ntp configuration file with ntp servers set by a variable in your salt
+8. Use pillar for all variables in your ntp salt states
+9. Create an orchestration file that installs ntp, initializes using ntpdate, then starts the ntp service
+10. Have your state from #3 also set a custom grain called ntp_initalized to True
+11. Create a custom execution module to list configured ntp servers

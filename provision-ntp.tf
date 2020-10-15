@@ -12,16 +12,15 @@ provider "aws" {
   // If you don't want to use default delete the line, then use next two lines calling access_key and secret_key
   // "default" uses the AWS credentials stored in your AWS Config File when you initially set up AWS CLI with "aws config"
   profile = "default"
-  // Recommended to never hard-code credntials into *.tf configuration files
-  // access_key = "123456"
-  // secret_key = "123456"
   region  = "us-east-2"
 }
 
-// Creating an aws ec2 instance named "ntp_server"
+// Creating an aws ec2 instance
 // Specify desired ami and instance_type
 resource "aws_instance" "ntp_server" {
-  // CentOS 7 image for us-east-2 from https://wiki.centos.org/Cloud/AWS#head-78d1e3a4e6ba5c5a3847750d88266916ffe69648
+  // CentOS 7 image needs to match region, see https://wiki.centos.org/Cloud/AWS
   ami           = "ami-0a75b786d9a7f8144"
   instance_type = "t2.micro"
+  // Use AWS EC2 Key Pairs to create key pair, if you don't do this you won't be able to ssh/putty into your EC2
+  key_name = "ntp-server"
 }
