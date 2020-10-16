@@ -28,5 +28,5 @@ resource "aws_instance" "master_ntp_server" {
 
   # Pass in scripts to be executed in the first boot of the instance
   # Installs salt on EC2
-  user_data = file("startup_tasks.sh")
+  user_data = file("startup_tasks.tpl")
 }
