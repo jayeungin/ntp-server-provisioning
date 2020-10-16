@@ -15,7 +15,3 @@ Using Terraform and Saltstack to provision a NTP server automatically.
 ## Install Saltstack on the NTP Server and tell Salt to run masterless:
 1. SSH/PuTTY into the server.
 2. Modify line 579 of configuration file '/etc/salt/minion' to match - 'file_client: local'
-
-## Create State Tree:
-1. Create the '/srv/salt/top.sls' file - copy from 'Saltstack/top.sls'
-2. Create the '/srv/salt/ntpserver.sls' state tree- copy from 'Saltstack/ntpserver.sls'

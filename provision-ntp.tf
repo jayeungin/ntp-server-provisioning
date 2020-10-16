@@ -28,5 +28,19 @@ resource "aws_instance" "master_ntp_server" {
 
   # Pass in scripts to be executed in the first boot of the instance
   # Installs salt on EC2
-  user_data = file("startup_tasks.tpl")
+  user_data = <<-EOF
+                  #!/bin/bash
+                  yum update -y
+                  sudo su
+                  yum -y install salt-master
+                  # Installing VIM
+                  yum -y install vim
+                  # Installing git
+                  yum -y install git
+                  git clone https://github.com/jayeungin/ntp-server-provisioning.git
+                  # Navigate to Salt files
+                  cd net-server-provisioning/saltstack
+                  # Applying Salt state
+                  salt-call --local state.apply -l debug
+                  EOF
 }

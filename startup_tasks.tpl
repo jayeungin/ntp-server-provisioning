@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 sudo su
 yum -y update
 # Bootstrapping a masterless salt-minion
@@ -7,8 +9,7 @@ sh bootstrap_salt.sh
 yum -y install vim
 # Installing git
 yum -y install git
-cd ..
 git clone https://github.com/jayeungin/ntp-server-provisioning.git
 # Copying Salt files
-cp Saltstack/ntp.conf Saltstack/ntp.sls Saltstack/top.sls ../srv/salt
+cd net-server-provisioning/saltstack
 salt-call --local state.apply -l debug
